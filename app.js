@@ -10,9 +10,9 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", (req, res, next) => {
-  res.render("index");
-});
+const router = require("./routes/router");
+
+app.use("/", router);
 
 const PORT = 3000;
 
