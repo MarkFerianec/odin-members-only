@@ -12,5 +12,6 @@ router.get("/sign-up", signUpController.getSignUpForm);
 router.post("/sign-up", signUpController.postSignUpForm);
 
 router.get("/join-club", joinClubController.getJoinClub);
+router.post("/join-club", joinClubController.postJoinClub);
 
 module.exports = router;
