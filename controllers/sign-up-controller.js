@@ -1,3 +1,7 @@
+const db = require("../db/queries");
+
+const bcrypt = require("bcryptjs");
+
 const { body, validationResult } = require("express-validator");
 
 exports.getSignUpForm = (req, res, next) => {
@@ -25,7 +29,16 @@ exports.postSignUpForm = [
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
-      res.send("No errors");
+      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+        // if err, do something
+        // otherwise, store hashedPassword in DB
+        try {
+          await db.addUser(req.body.username, hashedPassword);
+          res.redirect("/");
+        } catch (err) {
+          return next(err);
+        }
+      });
     } else {
       res.render("sign-up", { errors: errors.array() });
     }
