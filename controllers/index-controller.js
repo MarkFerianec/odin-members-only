@@ -1,3 +1,5 @@
+const links = require("../utils/links");
+
 exports.getIndex = (req, res, next) => {
-  res.render("index");
+  res.render("index", { links: links });
 };

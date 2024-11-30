@@ -1,3 +1,5 @@
+const links = require("../utils/links");
+
 const db = require("../db/queries");
 
 const bcrypt = require("bcryptjs");
@@ -5,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 
 exports.getSignUpForm = (req, res, next) => {
-  res.render("sign-up");
+  res.render("sign-up", { links: links });
 };
 
 const validatePassword = [
@@ -40,7 +42,7 @@ exports.postSignUpForm = [
         }
       });
     } else {
-      res.render("sign-up", { errors: errors.array() });
+      res.render("sign-up", { errors: errors.array(), links: links });
     }
   },
 ];
