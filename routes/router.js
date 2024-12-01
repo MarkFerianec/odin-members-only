@@ -13,6 +13,7 @@ router.get("/sign-up", signUpController.getSignUpForm);
 router.post("/sign-up", signUpController.postSignUpForm);
 
 router.get("/login", loginController.getLogin);
+router.post("/login", loginController.postLogin);
 
 router.get("/join-club", joinClubController.getJoinClub);
 router.post("/join-club", joinClubController.postJoinClub);
