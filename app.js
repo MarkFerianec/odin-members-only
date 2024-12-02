@@ -15,6 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const router = require("./routes/router");
 
+require("./config/passport");
+
 app.use(
   session({
     secret: process.env.secret,
