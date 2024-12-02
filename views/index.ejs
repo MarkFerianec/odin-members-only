@@ -8,5 +8,12 @@
   <body>
     <%- include('navbar') %>
     <h1>Index</h1>
+    <% if (locals.user) {%>
+    <h1>Welcome <%= user.username %></h1>
+    <a href="/logout">Logout</a>
+    <h2>Messages:</h2>
+    <% } else { %>
+    <h2>Messages:</h2>
+    <%}%>
   </body>
 </html>

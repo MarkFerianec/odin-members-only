@@ -3,6 +3,7 @@ const app = express();
 
 const path = require("node:path");
 
+const passport = require("passport");
 const session = require("express-session");
 
 app.use("/favicon.ico", express.static("images/favicon.ico"));
@@ -19,8 +20,12 @@ app.use(
     secret: process.env.secret,
     resave: false,
     saveUninitialized: false,
+    // cookie age is 1 day
+    cookie: { maxAge: 1 * 24 * 60 * 60 * 1000 },
   })
 );
+
+app.use(passport.session());
 
 app.use("/", router);
 
