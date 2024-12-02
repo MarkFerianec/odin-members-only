@@ -7,7 +7,13 @@ const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 
 exports.getSignUpForm = (req, res, next) => {
-  res.render("sign-up", { links: links });
+  if (req.isAuthenticated()) {
+    res.render("sign-up", {
+      links: links.userNonClubMemberLinks,
+    });
+  } else {
+    res.render("sign-up", { links: links.nonUserLinks });
+  }
 };
 
 const validatePassword = [

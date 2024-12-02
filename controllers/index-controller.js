@@ -1,5 +1,12 @@
 const links = require("../utils/links");
 
 exports.getIndex = (req, res, next) => {
-  res.render("index", { links: links, user: req.user });
+  if (req.isAuthenticated()) {
+    res.render("index", {
+      links: links.userNonClubMemberLinks,
+      user: req.user,
+    });
+  } else {
+    res.render("index", { links: links.nonUserLinks });
+  }
 };

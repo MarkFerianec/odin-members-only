@@ -1,15 +1,15 @@
 const express = require("express");
 const app = express();
 
-const path = require("node:path");
-
-const passport = require("passport");
 const session = require("express-session");
+const passport = require("passport");
 
-app.use("/favicon.ico", express.static("images/favicon.ico"));
+const path = require("node:path");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+app.use("/favicon.ico", express.static("images/favicon.ico"));
 
 app.use(express.urlencoded({ extended: true }));
 

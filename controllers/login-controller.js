@@ -3,7 +3,13 @@ const links = require("../utils/links");
 const passport = require("passport");
 
 exports.getLogin = (req, res, next) => {
-  res.render("login", { links: links });
+  if (req.isAuthenticated()) {
+    res.render("login", {
+      links: links.userNonClubMemberLinks,
+    });
+  } else {
+    res.render("login", { links: links.nonUserLinks });
+  }
 };
 
 exports.postLogin =
