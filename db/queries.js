@@ -6,3 +6,10 @@ exports.addUser = async (username, password) => {
     password,
   ]);
 };
+
+exports.becomeClubMember = async (username) => {
+  await pool.query(
+    "UPDATE users SET membership_status = TRUE WHERE username = ($1)",
+    [username]
+  );
+};

@@ -1,6 +1,6 @@
 const links = require("../utils/links");
 
-// const db = require("../db/queries");
+const db = require("../db/queries");
 
 exports.getJoinClub = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -12,6 +12,11 @@ exports.getJoinClub = (req, res, next) => {
   }
 };
 
-exports.postJoinClub = (req, res, next) => {
-  res.send("Test");
+exports.postJoinClub = async (req, res, next) => {
+  if (req.body.passcode === "1234") {
+    await db.becomeClubMember(req.user.username);
+    res.send("Correct passcode");
+  } else {
+    res.send("Wrong passcode");
+  }
 };
