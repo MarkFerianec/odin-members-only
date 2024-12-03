@@ -8,9 +8,7 @@ const { body, validationResult } = require("express-validator");
 
 exports.getSignUpForm = (req, res, next) => {
   if (req.isAuthenticated()) {
-    res.render("sign-up", {
-      links: links.userNonClubMemberLinks,
-    });
+    res.send("You are already signed up");
   } else {
     res.render("sign-up", { links: links.nonUserLinks });
   }

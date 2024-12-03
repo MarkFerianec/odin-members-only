@@ -4,9 +4,7 @@ const passport = require("passport");
 
 exports.getLogin = (req, res, next) => {
   if (req.isAuthenticated()) {
-    res.render("login", {
-      links: links.userNonClubMemberLinks,
-    });
+    res.send("You are already logged in");
   } else {
     res.render("login", { links: links.nonUserLinks });
   }
