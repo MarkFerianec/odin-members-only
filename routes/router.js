@@ -7,6 +7,7 @@ const signUpController = require("../controllers/sign-up-controller");
 const joinClubController = require("../controllers/join-club-controller");
 const loginController = require("../controllers/login-controller");
 const logoutController = require("../controllers/logout-controller");
+const createMessageController = require("../controllers/create-message-controller");
 
 router.get("/", indexController.getIndex);
 
@@ -20,5 +21,7 @@ router.get("/logout", logoutController.getLogout);
 
 router.get("/join-club", joinClubController.getJoinClub);
 router.post("/join-club", joinClubController.postJoinClub);
+
+router.get("/create-message", createMessageController.getCreateMessage);
 
 module.exports = router;
