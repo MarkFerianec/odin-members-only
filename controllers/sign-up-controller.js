@@ -23,7 +23,7 @@ const validatePassword = [
       const password = req.body.password;
 
       if (password !== confirmPassword) {
-        throw new Error("Passwords must be same");
+        throw new Error("Passwords must be the same");
       }
     })
     .escape(),
@@ -46,7 +46,10 @@ exports.postSignUpForm = [
         }
       });
     } else {
-      res.render("sign-up", { errors: errors.array(), links: links });
+      res.render("sign-up", {
+        errors: errors.array(),
+        links: links.nonUserLinks,
+      });
     }
   },
 ];
