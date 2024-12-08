@@ -13,3 +13,10 @@ exports.becomeClubMember = async (username) => {
     [username]
   );
 };
+
+exports.createMessage = async (username, title, text, timestamp) => {
+  await pool.query(
+    "INSERT INTO messages (username, title, text, timestamp) VALUES ($1, $2, $3, $4)",
+    [username, title, text, timestamp]
+  );
+};

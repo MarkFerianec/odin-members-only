@@ -23,5 +23,6 @@ router.get("/join-club", joinClubController.getJoinClub);
 router.post("/join-club", joinClubController.postJoinClub);
 
 router.get("/create-message", createMessageController.getCreateMessage);
+router.post("/create-message", createMessageController.postCreateMessage);
 
 module.exports = router;
