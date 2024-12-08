@@ -20,3 +20,8 @@ exports.createMessage = async (username, title, text, timestamp) => {
     [username, title, text, timestamp]
   );
 };
+
+exports.getAllMessages = async () => {
+  const { rows } = await pool.query("SELECT * FROM messages");
+  return rows;
+};

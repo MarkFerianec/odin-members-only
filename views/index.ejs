@@ -7,12 +7,40 @@
   </head>
   <body>
     <%- include('navbar') %>
+
     <h1>Index</h1>
-    <% if (locals.user) {%>
-    <h1>Welcome <%= user.username %></h1>
-    <h2>Messages:</h2>
-    <% } else { %>
-    <h2>Messages:</h2>
-    <%}%>
+
+    <% if (locals.user && locals.user.membership_status) {%>
+
+    <h2>Welcome club member <%= user.username %></h2>
+
+    <h3>Messages:</h3>
+
+    <% messages.forEach((message) => { %>
+
+    <li>
+      <%= message.username %>: <%= message.title %> <%= message.text %> <%=
+      message.timestamp %>
+    </li>
+
+    <%}) %> <% } else if (locals.user) { %>
+
+    <h2>Welcome user <%= user.username %></h2>
+
+    <h3>Messages:</h3>
+
+    <% messages.forEach((message) => { %>
+    <li><%= message.title %> <%= message.text %></li>
+
+    <%}) %> <%} else { %>
+
+    <h2>Welcome</h2>
+
+    <h3>Messages:</h3>
+
+    <% messages.forEach((message) => { %>
+    <li><%= message.title %> <%= message.text %></li>
+
+    <%}) }%>
   </body>
 </html>

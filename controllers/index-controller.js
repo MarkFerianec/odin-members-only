@@ -1,17 +1,23 @@
 const links = require("../utils/links");
 
-exports.getIndex = (req, res, next) => {
+const db = require("../db/queries");
+
+exports.getIndex = async (req, res, next) => {
+  const messages = await db.getAllMessages();
+
   if (req.isAuthenticated() && req.user.membership_status) {
     res.render("index", {
       links: links.userAndClubMemberLinks,
       user: req.user,
+      messages: messages,
     });
   } else if (req.isAuthenticated()) {
     res.render("index", {
       links: links.userNonClubMemberLinks,
       user: req.user,
+      messages: messages,
     });
   } else {
-    res.render("index", { links: links.nonUserLinks });
+    res.render("index", { links: links.nonUserLinks, messages: messages });
   }
 };
