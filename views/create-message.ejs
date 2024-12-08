@@ -6,11 +6,17 @@
     <title>Create message</title>
   </head>
   <body>
+    <%- include('navbar') %>
     <h1>Create a message</h1>
 
     <form action="" method="POST">
       <label for="title">Title</label>
-      <input id="title" name="title" placeholder="Title of message" type="text" />
+      <input
+        id="title"
+        name="title"
+        placeholder="Title of message"
+        type="text"
+      />
 
       <label for="text">Text</label>
       <input id="text" name="text" placeholder="Text of message" type="text" />
