@@ -31,3 +31,11 @@ exports.getIndex = async (req, res, next) => {
     res.render("index", { links: links.nonUserLinks, messages: messages });
   }
 };
+
+exports.deleteMessage = async (req, res, next) => {
+  const { message_id } = req.params;
+
+  await db.deleteMessage(message_id);
+
+  res.redirect("/");
+};

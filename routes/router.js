@@ -11,6 +11,7 @@ const createMessageController = require("../controllers/create-message-controlle
 const becomeAdminController = require("../controllers/become-admin-controller");
 
 router.get("/", indexController.getIndex);
+router.post("/delete-message/:message_id", indexController.deleteMessage);
 
 router.get("/sign-up", signUpController.getSignUpForm);
 router.post("/sign-up", signUpController.postSignUpForm);

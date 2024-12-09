@@ -22,6 +22,9 @@
     <li>
       <%= message.username %>: <%= message.title %> <%= message.text %> <%=
       message.timestamp %>
+      <form action="/delete-message/<%= message.id %>" method="POST">
+        <button type="submit">Delete</button>
+      </form>
     </li>
 
     <%}) %> <%} else if (locals.user && locals.user.membership_status) {%>

@@ -32,3 +32,7 @@ exports.becomeAdmin = async (username) => {
     [username]
   );
 };
+
+exports.deleteMessage = async (message_id) => {
+  await pool.query("DELETE FROM messages WHERE id = ($1)", [message_id]);
+};
