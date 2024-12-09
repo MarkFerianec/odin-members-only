@@ -2,36 +2,29 @@ const links = require("../utils/links");
 
 const db = require("../db/queries");
 
-exports.getJoinClub = (req, res, next) => {
+exports.getBecomeAdmin = (req, res, next) => {
   if (
     req.isAuthenticated() &&
     req.user.membership_status &&
     req.user.admin_status
   ) {
-    res.render("index", {
+    res.render("become-admin", {
       links: links.clubMemberAndAdminLinks,
       user: req.user,
     });
   } else if (req.isAuthenticated() && req.user.membership_status) {
-    res.render("index", {
+    res.render("become-admin", {
       links: links.userAndClubMemberLinks,
       user: req.user,
     });
-  } else if (req.isAuthenticated()) {
-    res.render("join-club", {
-      links: links.userNonClubMemberLinks,
-    });
   } else {
-    // This might cause an error if someone uses it and they are not a user
-    // res.render("join-club", { links: links.nonUserLinks });
-
-    res.send("Please sign up first");
+    res.send("You must be a club member to become an admin");
   }
 };
 
-exports.postJoinClub = async (req, res, next) => {
+exports.postBecomeAdmin = async (req, res, next) => {
   if (req.body.passcode === "1234") {
-    await db.becomeClubMember(req.user.username);
+    await db.becomeAdmin(req.user.username);
     res.send("Correct passcode");
   } else {
     res.send("Wrong passcode");

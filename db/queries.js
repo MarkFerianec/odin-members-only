@@ -25,3 +25,10 @@ exports.getAllMessages = async () => {
   const { rows } = await pool.query("SELECT * FROM messages");
   return rows;
 };
+
+exports.becomeAdmin = async (username) => {
+  await pool.query(
+    "UPDATE users SET admin_status = TRUE WHERE username = ($1)",
+    [username]
+  );
+};

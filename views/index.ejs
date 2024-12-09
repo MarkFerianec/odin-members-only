@@ -10,7 +10,21 @@
 
     <h1>Index</h1>
 
-    <% if (locals.user && locals.user.membership_status) {%>
+    <% if (locals.user && locals.user.membership_status &&
+    locals.user.admin_status) { %>
+
+    <h2>Welcome admin <%= user.username %></h2>
+
+    <h3>Messages:</h3>
+
+    <% messages.forEach((message) => { %>
+
+    <li>
+      <%= message.username %>: <%= message.title %> <%= message.text %> <%=
+      message.timestamp %>
+    </li>
+
+    <%}) %> <%} else if (locals.user && locals.user.membership_status) {%>
 
     <h2>Welcome club member <%= user.username %></h2>
 

@@ -3,7 +3,16 @@ const links = require("../utils/links");
 const db = require("../db/queries");
 
 exports.getCreateMessage = (req, res, next) => {
-  if (req.isAuthenticated() && req.user.membership_status) {
+  if (
+    req.isAuthenticated() &&
+    req.user.membership_status &&
+    req.user.admin_status
+  ) {
+    res.render("create-message", {
+      links: links.clubMemberAndAdminLinks,
+      user: req.user,
+    });
+  } else if (req.isAuthenticated() && req.user.membership_status) {
     res.render("create-message", {
       links: links.userAndClubMemberLinks,
     });
