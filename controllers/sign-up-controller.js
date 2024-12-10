@@ -14,6 +14,14 @@ exports.getSignUpForm = (req, res, next) => {
   }
 };
 
+const validateUsername = [
+  body("username")
+    .trim()
+    .isLength({ min: 3, max: 20 })
+    .withMessage("Username must be between 3 to 20 characters")
+    .escape(),
+];
+
 const validatePassword = [
   body("confirmPassword")
     .trim()
@@ -30,6 +38,7 @@ const validatePassword = [
 ];
 
 exports.postSignUpForm = [
+  validateUsername,
   validatePassword,
   async (req, res, next) => {
     const errors = validationResult(req);
