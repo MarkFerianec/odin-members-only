@@ -3,6 +3,7 @@ const app = express();
 
 const session = require("express-session");
 const passport = require("passport");
+const pool = require("./db/pool");
 
 const path = require("node:path");
 
@@ -19,11 +20,14 @@ require("./config/passport");
 
 app.use(
   session({
+    store: new (require("connect-pg-simple")(session))({
+      // Insert connect-pg-simple options here
+      pool: pool,
+    }),
     secret: process.env.secret,
     resave: false,
     saveUninitialized: false,
-    // cookie age is 1 day
-    cookie: { maxAge: 1 * 24 * 60 * 60 * 1000 },
+    cookie: { maxAge: 1 * 24 * 60 * 60 * 1000 }, // 1 day
   })
 );
 
