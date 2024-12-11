@@ -10,10 +10,7 @@ exports.getBecomeAdmin = (req, res, next) => {
     req.user.membership_status &&
     req.user.admin_status
   ) {
-    res.render("become-admin", {
-      links: links.clubMemberAndAdminLinks,
-      user: req.user,
-    });
+    res.redirect("/");
   } else if (req.isAuthenticated() && req.user.membership_status) {
     res.render("become-admin", {
       links: links.userAndClubMemberLinks,
