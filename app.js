@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 const router = require("./routes/router");
 
 require("./config/passport");
+const middleware = require("./utils/middleware");
 
 app.use(
   session({
@@ -34,6 +35,8 @@ app.use(
 app.use(passport.session());
 
 app.use("/", router);
+
+app.use(middleware.errorHandler);
 
 const PORT = 3000;
 
