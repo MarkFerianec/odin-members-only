@@ -49,7 +49,7 @@ exports.postSignUpForm = [
         // otherwise, store hashedPassword in DB
         try {
           await db.addUser(req.body.username, hashedPassword);
-          res.redirect("/");
+          res.redirect("/login");
         } catch (err) {
           return next(err);
         }
