@@ -6,13 +6,19 @@ exports.getLogin = (req, res, next) => {
   if (req.isAuthenticated()) {
     res.send("You are already logged in");
   } else {
-    res.render("login", { links: links.nonUserLinks });
+    res.render("login", {
+      links: links.nonUserLinks,
+    });
   }
+};
+
+exports.getLoginFailure = (req, res, next) => {
+  res.render("login-failure", { links: links.nonUserLinks });
 };
 
 exports.postLogin =
   ("/login",
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login",
+    failureRedirect: "/login-failure",
   }));

@@ -18,6 +18,7 @@ router.post("/sign-up", signUpController.postSignUpForm);
 
 router.get("/login", loginController.getLogin);
 router.post("/login", loginController.postLogin);
+router.get("/login-failure", loginController.getLoginFailure);
 
 router.get("/logout", logoutController.getLogout);
 
