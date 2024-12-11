@@ -10,24 +10,15 @@ exports.getJoinClub = (req, res, next) => {
     req.user.membership_status &&
     req.user.admin_status
   ) {
-    res.render("index", {
-      links: links.clubMemberAndAdminLinks,
-      user: req.user,
-    });
+    res.redirect("/");
   } else if (req.isAuthenticated() && req.user.membership_status) {
-    res.render("index", {
-      links: links.userAndClubMemberLinks,
-      user: req.user,
-    });
+    res.redirect("/");
   } else if (req.isAuthenticated()) {
     res.render("join-club", {
       links: links.userNonClubMemberLinks,
     });
   } else {
-    // This might cause an error if someone uses it and they are not a user
-    // res.render("join-club", { links: links.nonUserLinks });
-
-    res.send("Please sign up first");
+    res.redirect("/sign-up");
   }
 };
 
